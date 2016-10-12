@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_CategoryID_Category_ID" FromRole="Category" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="ProductRecipeRelation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="RecipeID" Type="Int32" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_ProductRecipeRelation_ProductID_Products_ID" FromRole="ProductRecipeRelation" ToRole="Products" />
+    <NavigationProperty Name="Recipes" Relationship="Self.FK_ProductRecipeRelation_RecipeID_Recipes_ID" FromRole="ProductRecipeRelation" ToRole="Recipes" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NumberOfCaloriesPerGramm" Type="Int32" />
+    <Property Name="NumberOfGrams" Type="Int32" />
+    <Property Name="CategoryID" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Products_CategoryID_Category_ID" FromRole="Products" ToRole="Category" />
+    <NavigationProperty Name="ProductRecipeRelation" Relationship="Self.FK_ProductRecipeRelation_ProductID_Products_ID" FromRole="Products" ToRole="ProductRecipeRelation" />
+  </EntityType>
+  <EntityType Name="Recipes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProductRecipeRelation" Relationship="Self.FK_ProductRecipeRelation_RecipeID_Recipes_ID" FromRole="Recipes" ToRole="ProductRecipeRelation" />
+  </EntityType>
+  <Association Name="FK_Products_CategoryID_Category_ID">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductRecipeRelation_ProductID_Products_ID">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="ProductRecipeRelation" Type="Self.ProductRecipeRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductRecipeRelation">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductRecipeRelation_RecipeID_Recipes_ID">
+    <End Role="Recipes" Type="Self.Recipes" Multiplicity="0..1" />
+    <End Role="ProductRecipeRelation" Type="Self.ProductRecipeRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recipes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductRecipeRelation">
+        <PropertyRef Name="RecipeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TestDbEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="ProductRecipeRelation" EntityType="Self.ProductRecipeRelation" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="Recipes" EntityType="Self.Recipes" />
+    <AssociationSet Name="FK_Products_CategoryID_Category_ID" Association="Self.FK_Products_CategoryID_Category_ID">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductRecipeRelation_ProductID_Products_ID" Association="Self.FK_ProductRecipeRelation_ProductID_Products_ID">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductRecipeRelation" EntitySet="ProductRecipeRelation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductRecipeRelation_RecipeID_Recipes_ID" Association="Self.FK_ProductRecipeRelation_RecipeID_Recipes_ID">
+      <End Role="Recipes" EntitySet="Recipes" />
+      <End Role="ProductRecipeRelation" EntitySet="ProductRecipeRelation" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnitytIOCMvc", "EnitytIOCMvc\EnitytIOCMvc.csproj", "{6A2C9178-B53F-4D1B-B524-46C77039AE02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnitytIOCMvc.Tests", "EnitytIOCMvc.Tests\EnitytIOCMvc.Tests.csproj", "{D550CE7F-0634-415E-BA9D-1ADD48211902}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A2C9178-B53F-4D1B-B524-46C77039AE02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A2C9178-B53F-4D1B-B524-46C77039AE02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A2C9178-B53F-4D1B-B524-46C77039AE02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A2C9178-B53F-4D1B-B524-46C77039AE02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D550CE7F-0634-415E-BA9D-1ADD48211902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D550CE7F-0634-415E-BA9D-1ADD48211902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D550CE7F-0634-415E-BA9D-1ADD48211902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D550CE7F-0634-415E-BA9D-1ADD48211902}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
